@@ -1,7 +1,8 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  background: transparent url('../../../images/edit-icon.svg') center no-repeat;
+  background: transparent url("../../../../Mesto 8 Sprint/Edit Button.svg") center
+    no-repeat;
   /* Иконка из макета Figma: контур и кисть внутри одного SVG */
   background-size: contain;
   border: none;

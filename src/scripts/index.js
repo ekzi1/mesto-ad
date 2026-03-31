@@ -8,7 +8,7 @@
 
 import "../pages/index.css";
 
-import logo from "../images/logo.svg";
+import logo from "../../Mesto 8 Sprint/logo.svg";
 import avatarImage from "../images/avatar.jpg";
 
 import { initialCards } from "./cards.js";

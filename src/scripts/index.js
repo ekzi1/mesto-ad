@@ -6,16 +6,28 @@
   Из index.js не допускается что то экспортировать
 */
 
+import "../pages/index.css";
+
+import logo from "../images/logo.svg";
+import avatarImage from "../images/avatar.jpg";
+
 import { initialCards } from "./cards.js";
 import { createCardElement, deleteCard, likeCard } from "./components/card.js";
-import { openModalWindow, closeModalWindow, setCloseModalWindowEventListeners } from "./components/modal.js";
+import {
+  openModalWindow,
+  closeModalWindow,
+  setCloseModalWindowEventListeners,
+} from "./components/modal.js";
+import { FormValidator } from "./components/FormValidator.js";
+import { validationConfig } from "./utils/validation-config.js";
 
-// DOM узлы
 const placesWrap = document.querySelector(".places__list");
 const profileFormModalWindow = document.querySelector(".popup_type_edit");
 const profileForm = profileFormModalWindow.querySelector(".popup__form");
 const profileTitleInput = profileForm.querySelector(".popup__input_type_name");
-const profileDescriptionInput = profileForm.querySelector(".popup__input_type_description");
+const profileDescriptionInput = profileForm.querySelector(
+  ".popup__input_type_description"
+);
 
 const cardFormModalWindow = document.querySelector(".popup_type_new-card");
 const cardForm = cardFormModalWindow.querySelector(".popup__form");
@@ -33,9 +45,22 @@ const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileAvatar = document.querySelector(".profile__image");
 
-const avatarFormModalWindow = document.querySelector(".popup_type_edit-avatar");
+const avatarFormModalWindow = document.querySelector(
+  ".popup_type_edit-avatar"
+);
 const avatarForm = avatarFormModalWindow.querySelector(".popup__form");
 const avatarInput = avatarForm.querySelector(".popup__input");
+
+const profileFormValidator = new FormValidator(validationConfig, profileForm);
+const newCardFormValidator = new FormValidator(validationConfig, cardForm);
+const avatarFormValidator = new FormValidator(validationConfig, avatarForm);
+
+profileFormValidator.enableValidation();
+newCardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
+
+document.querySelector(".header__logo").src = logo;
+profileAvatar.style.backgroundImage = `url(${avatarImage})`;
 
 const handlePreviewPicture = ({ name, link }) => {
   imageElement.src = link;
@@ -76,7 +101,6 @@ const handleCardFormSubmit = (evt) => {
   closeModalWindow(cardFormModalWindow);
 };
 
-// EventListeners
 profileForm.addEventListener("submit", handleProfileFormSubmit);
 cardForm.addEventListener("submit", handleCardFormSubmit);
 avatarForm.addEventListener("submit", handleAvatarFromSubmit);
@@ -84,20 +108,22 @@ avatarForm.addEventListener("submit", handleAvatarFromSubmit);
 openProfileFormButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
+  profileFormValidator.resetValidation();
   openModalWindow(profileFormModalWindow);
 });
 
 profileAvatar.addEventListener("click", () => {
   avatarForm.reset();
+  avatarFormValidator.resetValidation();
   openModalWindow(avatarFormModalWindow);
 });
 
 openCardFormButton.addEventListener("click", () => {
   cardForm.reset();
+  newCardFormValidator.resetValidation();
   openModalWindow(cardFormModalWindow);
 });
 
-// отображение карточек
 initialCards.forEach((data) => {
   placesWrap.append(
     createCardElement(data, {
@@ -108,7 +134,6 @@ initialCards.forEach((data) => {
   );
 });
 
-//настраиваем обработчики закрытия попапов
 const allPopups = document.querySelectorAll(".popup");
 allPopups.forEach((popup) => {
   setCloseModalWindowEventListeners(popup);

@@ -2,9 +2,9 @@
   width: 24px;
   height: 24px;
   background: transparent url('../../../images/edit-icon.svg') center no-repeat;
-  /*Шортхэнды пора бы знать, хотя бы в можно лучше*/
-  background-size: 10px 10px;
-  border: 1px solid #fff;
+  /* Иконка из макета Figma: контур и кисть внутри одного SVG */
+  background-size: contain;
+  border: none;
   grid-area: button;
   align-self: center;
   /*Можно марджином тут выровнять под ПЭПЭ, но тут оставил AS.*/
@@ -27,6 +27,5 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
-    background-size: 8px 8px;
   }
 }

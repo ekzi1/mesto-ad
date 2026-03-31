@@ -69,7 +69,7 @@ export class FormValidator {
       inputElement.validity.typeMismatch ||
       inputElement.validity.patternMismatch
     ) {
-      return "Введите адрес сайта.";
+      return "Введите URL адрес.";
     }
     return inputElement.validationMessage;
   }

@@ -1,6 +1,9 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+require("dotenv").config({ path: path.resolve(__dirname, ".env") });
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === "production";
@@ -55,6 +58,14 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        "process.env.MESTO_COHORT": JSON.stringify(
+          process.env.MESTO_COHORT || ""
+        ),
+        "process.env.MESTO_TOKEN": JSON.stringify(
+          process.env.MESTO_TOKEN || ""
+        ),
+      }),
       new HtmlWebpackPlugin({
         template: "./index.html",
       }),

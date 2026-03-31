@@ -2,6 +2,7 @@
   "name": "mesto-ad",
   "version": "1.0.0",
   "private": true,
+  "figma": "https://www.figma.com/design/5zPm3HrSi0VzEMmZneL6Sq/Mesto-8-Sprint?node-id=1-2",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development",

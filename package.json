@@ -2,11 +2,13 @@
   "name": "mesto-ad",
   "version": "1.0.0",
   "private": true,
+  "description": "Запуск: npm install && npm run dev — откроется localhost со стилями и скриптами. Файл index.html в корне только шаблон для Webpack; открывать его напрямую в браузере нельзя. После npm run build открывайте dist/index.html через любой локальный сервер (или npm run preview).",
   "figma": "https://www.figma.com/design/5zPm3HrSi0VzEMmZneL6Sq/Mesto-8-Sprint?node-id=1-2",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve --mode development",
-    "start": "webpack serve --mode development --open"
+    "start": "webpack serve --mode development --open",
+    "preview": "npm run build && npx --yes serve dist -l 4173"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",

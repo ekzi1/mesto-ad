@@ -14,11 +14,13 @@ module.exports = (env, argv) => {
         : "scripts/[name].js",
       clean: true,
       assetModuleFilename: "assets/[name].[hash][ext]",
-      publicPath: "./",
+      // В dev — абсолютный путь, чтобы с localhost всегда подтягивался память-бандл, а не старый dist
+      publicPath: isProduction ? "./" : "/",
     },
     devtool: isProduction ? false : "source-map",
     devServer: {
-      static: path.resolve(__dirname, "dist"),
+      // Не раздаём папку dist с диска: там может лежать старый index.html без актуального JS/CSS
+      static: false,
       open: true,
       hot: true,
       port: 8080,

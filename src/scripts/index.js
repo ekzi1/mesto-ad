@@ -1,4 +1,4 @@
-import './pages/index.css';
+import '../pages/index.css';
 import { getUserInfo, getCardList, setUserInfo, setUserAvatar, addNewCard, deleteCard, changeLikeCardStatus } from './components/api.js';
 import { openModalWindow, closeModalWindow, setCloseModalWindowEventListeners } from './components/modal.js';
 import { enableValidation, clearValidation } from './components/validation.js';
